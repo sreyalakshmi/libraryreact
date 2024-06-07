@@ -4,6 +4,7 @@ import AddBook from './components/AddBook';
 import SearchBook from './components/SearchBook';
 import DeleteBook from './components/DeleteBook';
 import ViewAll from './components/ViewAll';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <SearchBook/>
       <DeleteBook/>
       <ViewAll/>
+      <Navbar/>
     </div>
   );
 }
