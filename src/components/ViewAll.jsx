@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
+import axios from 'axios'
 
 const ViewAll = () => {
+  const[data,changedata]=useState(
+   [ 
+  ]
+  )
+  const fetchData=()=>{
+    axios.get("http://localhost:8080/view",data).then(
+      (response)=>{
+        changedata(response.data)
+      }
+    ).catch()
+  }
+  useEffect(()=>{fetchData()},[])
   return (
     <div>
         <Navbar/>
@@ -18,54 +31,17 @@ const ViewAll = () => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td scope="row">harry potter</td>
-      <td>jk rowling</td>
-      <td>1987</td>
-      <td>$200</td>
-    </tr>
-    <tr>
-    <td scope="row">heiddi</td>
-      <td>jk</td>
-      <td>1987</td>
-      <td>$100</td>
-    </tr>
-    <tr>
-    <td scope="row">hellen keller</td>
-      <td>hellen</td>
-      <td>1987</td>
-      <td>$150</td>
-    </tr>
-    <tr>
-    <td scope="row">wings of fire</td>
-      <td>apj</td>
-      <td>1990</td>
-      <td>$150</td>
-    </tr>
-    <tr>
-    <td scope="row">melencoly</td>
-      <td>heen</td>
-      <td>1987</td>
-      <td>$150</td>
-    </tr>
-    <tr>
-    <td scope="row">2 states</td>
-      <td>chetan bagat</td>
-      <td>2019</td>
-      <td>$150</td>
-    </tr>
-    <tr>
-    <td scope="row">half girlfiend</td>
-      <td>chetan bagat</td>
-      <td>2026</td>
-      <td>$150</td>
-    </tr>
-    <tr>
-    <td scope="row">ikigai</td>
-      <td>susoki</td>
-      <td>2020</td>
-      <td>$200</td>
-    </tr>
+    {data.map(
+      (value,index)=>{
+        return <tr>
+        <td scope="row">{value.title}</td>
+        <td>{value.author}</td>
+        <td>{value['published year']}</td>
+        <td>{value.price}</td>
+      </tr>
+      }
+    )}
+    
   </tbody>
 </table>
                 </div>
